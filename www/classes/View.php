@@ -20,7 +20,7 @@ class View {
             $$key = $value;
         }
 
-        include __DIR__ . '/../Views/' . $file;
+        include __DIR__ . '/../Views/template.php';
     }
 
     public static function mainPage() {
