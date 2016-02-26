@@ -1,12 +1,29 @@
 <?php
+namespace App\Classes;
 
-/**
- * Created by PhpStorm.
- * User: YOBA
- * Date: 26.02.2016
- * Time: 14:08
- */
-class View
-{
+class View {
 
+    public $data=[];
+
+    public function __set($name, $value) {
+        $this->data[$name] = $value;
+    }
+
+    public function __get($name)
+    {
+        return $this->data[$name];
+    }
+
+    public function display($file) {
+
+        foreach ($this->data as $key => $value) {
+            $$key = $value;
+        }
+
+        include __DIR__ . '/../Views/' . $file;
+    }
+
+    public static function mainPage() {
+        header('Location: /index.php');
+    }
 }
