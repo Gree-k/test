@@ -1,6 +1,9 @@
 <?php
 namespace App\Controllers;
 
+use App\Classes\View;
+use App\Models\News;
+
 class Admin {
     public function actionDel() {
         $id = $_GET['id'];
@@ -29,7 +32,7 @@ class Admin {
             $item = News::getOneById($_GET['id']);
             $view->news = $item;
         }
-        $view->display('news/form.php');
+        $view->display('News/form.php');
     }
 
 }

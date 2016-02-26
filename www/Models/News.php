@@ -8,6 +8,6 @@ namespace App\Models;
  * @property $text
  * @property $date
  */
-class News extends AModel{
-    protected static $table = 'news';
+class News extends AbstractModel{
+    protected static $table = 'News';
 }

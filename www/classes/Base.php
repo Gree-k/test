@@ -1,6 +1,8 @@
 <?php
 namespace App\Classes;
 
+use PDO;
+
 class Base
 {
     protected $dbn;
