@@ -7,7 +7,17 @@ use App\Models\News as NewsModel;
 
 class News {
     public function actionAll() {
-        $items = NewsModel::getAllReverseSort('date');
+        $items = NewsModel::getAllNewsAndAuthorReverseSort('date');
+        foreach ($items as $value) {
+            foreach ($value as &$val) {
+                foreach ($val as $k => &$v) {
+                    if ($k == 'date') {
+                        $z = explode(' ', $v);
+                        $v = date("F j, Y", strtotime($z[0]));
+                    }
+                }
+            }
+        }
         $view = new View();
         $view->news = $items;
         $view->display('News/all.php');
