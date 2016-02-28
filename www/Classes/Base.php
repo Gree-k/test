@@ -9,7 +9,7 @@ class Base
     protected $className = 'stdClass';
 
     public function __construct() {
-        $this->dbn = new PDO('mysql:dbname=test;host=localhost', 'root', '');
+        $this->dbn = new PDO('mysql:dbname=a_site;host=localhost', 'root', '');
     }
 
     public function setClassName($name) {
