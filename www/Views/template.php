@@ -6,17 +6,36 @@
 
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/Views/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 </head>
 <body>
-<div class="blog-masthead">
-<div class="container">
-    <nav class="blog-nav">
-        <a class="blog-nav-item active" href="/index.php">Новости</a>
-        <a class="blog-nav-item" href="#">Галерея</a>
-        <a class="blog-nav-item" href="#">Змейка</a>
-    </nav>
+
+<div class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Новости</a></li>
+                <li><a href="#about">Галерея</a></li>
+                <li><a href="#contact">Змейка</a></li>
+            </ul>
+            <div class="navbar-right" style="padding-top: 7px;">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default">Вход</button>
+                    <button type="button" class="btn btn-default">Регистрация</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-</div>
+
 <div class="container">
 
     <div class="blog-header">
@@ -25,34 +44,46 @@
     </div>
 
     <div class="row">
-<!--        <div class="col-sm-8 blog-main">-->
             <?php include __DIR__ . '/' . $file ;?>
-<!--        </div>-->
-
-<!--        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">-->
-<!--            <div class="sidebar-module sidebar-module-inset">-->
-<!--                <h4>About</h4>-->
-<!--                <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>-->
-<!--            </div>-->
-<!--        </div>-->
-
     </div>
-
-<!--    <div class="row marketing">-->
-<!--        --><?php //include __DIR__ . '/' . $file ;?>
-<!--    </div>-->
-
-<!--    <div class="footer">-->
-<!--        <p>&copy; Company 2016</p>-->
-<!--    </div>-->
 
 </div>
 
-<div class="blog-footer">
-    <p>Blog template built for <a href="http://getbootstrap.com">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
-    <p>
-        <a href="#">Back to top</a>
-    </p>
+
+<div id="footer">
+    <div class="container">
+        <p class="text-muted">&copy; made by <a href="#">Greek</a></p>
+    </div>
+</div>
+<!--<div class="blog-footer">-->
+<!--    <p>made by <a href="#">Greek</a></p>-->
+<!--    <p>-->
+<!--        <a href="#">Back to top</a>-->
+<!--    </p>-->
+<!--</div>-->
+
+
+<!--<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">-->
+<!--    Посмотреть демо-->
+<!--</button>-->
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Название модали</h4>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                <button type="button" class="btn btn-primary">Сохранить изменения</button>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
