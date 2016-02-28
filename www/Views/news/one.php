@@ -1,3 +1,3 @@
 <p><a href="../../index.php">&larr;Назад</a></p>
 <h1><?= $news->title;?></h1>
-<p><?=$news->text;?></p>
+<p><?=str_replace('<br />', '</p><p>', nl2br($news->text));?></p>
