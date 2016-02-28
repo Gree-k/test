@@ -2,7 +2,8 @@
 <?php foreach ($news as $new):?>
     <div class="blog-post">
         <a href="index.php?act=One&id=<?=$new->id;?>"><h2 class="blog-post-title"><?= $new->title; ?></h2></a><br>
-        <p class="blog-post-meta"><?=$new->date;?> by <?=$new->login;?></p>
+        <p class="blog-post-meta"><?=date("F j, Y", strtotime(explode(' ', $new->date)[0]));?>
+            by <?=$new->login;?></p>
         <p><?= mb_substr($new->text,0,500)?>
             <?php if(mb_strlen($new->text)>500):?>
                 &nbsp;&hellip;&nbsp;
