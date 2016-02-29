@@ -1,6 +1,17 @@
 /*
  * Globals
  */
+#tableForm{
+    padding: 5px;
+    width: 100%;
+}
+#tableForm td{
+    padding: 5px;
+}
+#tableForm th{
+    text-align: right;
+    width: 117px;
+}
 
 html {
     position: relative;
