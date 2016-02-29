@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="/JavaScripts/bootstrap.js"></script>
-    <link rel="stylesheet" href="/Views/style.css">
+    <link rel="stylesheet" href="/Views/blogStyle.css">
     <script src="/JavaScripts/Authorization.js"></script>
 </head>
 <body>
@@ -35,7 +35,9 @@
                             <?=$_SESSION['username'];?> <span class="caret"></span></button>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#">Например ЛК</a></li>
-                            <li><a href="#">Если Админ то Админ панель</a></li>
+                            <?php if('admin'==$_SESSION['access']):?>
+                                <li><a href="index.php?cont=Admin">Панель администратора</a></li>
+                            <? endif;?>
                             <li><a href="#">Что-то иное</a></li>
                             <li class="divider"></li>
                             <li><a href="/index.php?cont=Site&act=Logout">Выход</a></li>
@@ -49,6 +51,14 @@
                     </button>
                 <?php endif; ?>
             </div>
+
+
+            <form class="navbar-form navbar-right" style="margin-right: 30px;">
+                <input type="text" class="form-control" placeholder="Search...">
+            </form>
+
+
+
         </div>
     </div>
 </div>
