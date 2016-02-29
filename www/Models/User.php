@@ -1,15 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: YOBA
- * Date: 29.02.2016
- * Time: 1:34
- */
-
 namespace App\Models;
 
-
-class User
-{
+/**
+ * Class User
+ * @package $name
+ * @package $surname
+ * @package $username
+ * @package $password
+ * @package $date;
+ */
+class User extends AbstractModel {
+    protected static $table = 'st_user';
 
 }
