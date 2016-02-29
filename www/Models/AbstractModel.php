@@ -25,7 +25,7 @@ abstract class AbstractModel {
         if (isset($this->id)) {
             $this->update();
         }else {
-            $this->add();
+            return $this->add();
         }
     }
     /** Получить все записи отсоритированные в обратном порядке */
@@ -69,7 +69,7 @@ abstract class AbstractModel {
                 (' . implode(', ', array_keys($ins)) . ')';
 
         $bd = new Base();
-        $bd->sql_execute($str, $ins);
+        return $bd->sql_execute($str, $ins);
     }
 
     /** Изменить запись */
