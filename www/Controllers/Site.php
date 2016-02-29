@@ -7,11 +7,11 @@ use App\Models\User;
 class Site {
 
     public function actionLogin() {
-        $user=User::findByColumn('username', $_POST['username']);
+        $user=User::getUserByUserName($_POST['username']);
         if (!empty($user) && 1==count($user)) {
-            $user = $user[0];
             if ($user->password == $_POST['password']) {
                 $_SESSION['username']=$user->username;
+                $_SESSION['access']=$user->access;
                 if (isset($_POST['remember'])) {
                     setcookie('username', $user->username, time() + 60 * 60 * 24);
                 }
@@ -24,6 +24,7 @@ class Site {
 
     public function actionLogout() {
         unset($_SESSION['username']);
+        unset($_SESSION['access']);
         if (isset($_COOKIE['username'])) {
             setcookie('username', '', time() - 60 * 60 * 24);
         }
@@ -38,9 +39,20 @@ class Site {
         $user->date=date("Y.m.d H:i:s");
         $fin = $user->save();
         if ($fin) {
-            $_SESSION['username']=$user->username;
+            $_SESSION['username'] = $user->username;
         }
         View::mainPage();
 
+    }
+
+    static public function setSessionByCookie() {
+        $user = User::getUserByUserName($_COOKIE['username']);
+        $_SESSION['username'] = $user->username;
+        $_SESSION['access'] = $user->access;
+    }
+
+    static public function setSessionAccess() {
+        $user = User::getUserByUserName($_SESSION['username']);
+        $_SESSION['access']=$user->access;
     }
 }
