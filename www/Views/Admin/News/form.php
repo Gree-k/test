@@ -1,8 +1,17 @@
-<form action="/index.php?act=Save" method="post">
-    <?php if(!empty($news)):?><input type="hidden" name="id" value="<?=$news->id;?>"><? endif;?>
-    Заголовок статьи:<br>
-    <input type="text" name="title" value="<?=empty($news) ? '' : $news->title;?>"><br>
-    Содержание:<br>
-    <textarea name="text" rows="10"><?=empty($news) ? '' : $news->text;?></textarea><br>
-    <input type="submit" value="Добавить">
+<form action="/index.php?cont=Admin&act=SaveNews" method="post">
+    <?php if(!empty($news)):?>
+        <input type="hidden" name="id" value="<?=$news->id;?>">
+    <?php endif;?>
+    <label class="adminFormLabel" >
+        Заголовок статьи:
+        <input class="form-control" type="text" name="title" style="margin-top: 10px"
+               value="<?=empty($news) ? '' : htmlspecialchars($news->title,ENT_QUOTES);?>">
+    </label>
+
+    <label class="adminFormLabel">
+        Содержание:
+        <textarea class="form-control" name="text" rows="15" style="margin-top: 10px">
+            <?=empty($news) ? '' : $news->text;?></textarea><br>
+    </label>
+    <input type="submit" value="Сохранить" class="btn btn-primary pull-right">
 </form>
