@@ -14,6 +14,7 @@
                 <a href="index.php?act=One&id=<?=$new->id; ?>">Читать&nbsp;далее</a>
             <?php endif;?>
         </p>
+        <a href="index.php?act=One&id=<?=$new->id;?>#commentAnchor">Коментарии</a>
     </div>
 
 <?php endforeach;?>
