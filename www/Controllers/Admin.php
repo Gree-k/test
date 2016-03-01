@@ -45,4 +45,11 @@ class Admin {
         $view->displayAdmin('News/all.php');
 
     }
+    public function actionOne() {
+        $id = $_GET['id'];
+        $item = News::getOneById($id);
+        $view = new View();
+        $view->news = $item;
+        $view->displayAdmin('News/one.php');
+    }
 }
