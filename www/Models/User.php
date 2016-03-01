@@ -25,7 +25,7 @@ class User extends AbstractModel {
         return $res;
     }
 
-    static public function getUserByUserName($username) {
+    static public function getUserByUsername($username) {
         $bd = new Base();
         $bd->setClassName(get_called_class());
         $str = 'SELECT st_user.id, st_lvlaccess.access, username, name, surname, password, date
