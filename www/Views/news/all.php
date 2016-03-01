@@ -10,11 +10,17 @@
             by <?=$new->username;?></p>
         <p><?= mb_substr($new->text,0,500)?>
             <?php if(mb_strlen($new->text)>500):?>
-                &nbsp;&hellip;&nbsp;
-                <a href="index.php?act=One&id=<?=$new->id; ?>">Читать&nbsp;далее</a>
+                &nbsp;&hellip;
+<!--                <a href="index.php?act=One&id=--><?//=$new->id; ?><!--">Читать&nbsp;далее</a>-->
             <?php endif;?>
         </p>
-        <a href="index.php?act=One&id=<?=$new->id;?>#commentAnchor">Коментарии</a>
+<!--        <a href="index.php?act=One&id=--><?//=$new->id;?><!--#commentAnchor">Коментарии</a>-->
+        <div class="btn-group btn-group-lg" style="margin-left: -15px" >
+            <a href="index.php?act=One&id=<?=$new->id;?>#commentAnchor" class="btn"><span class="glyphicon glyphicon-comment"></a>
+            <?php if(mb_strlen($new->text)>500):?>
+                <a href="index.php?act=One&id=<?=$new->id; ?>" class="btn">Читать далее</a>
+            <?php endif;?>
+        </div>
     </div>
 
 <?php endforeach;?>
