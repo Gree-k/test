@@ -16,4 +16,19 @@ class Comment extends AbstractModel {
         $res = $bd->sql_query($str, [':id' => $newsId]);
         return $res;
     }
+
+    public function add() {
+        $cols= array_keys($this->data);
+        $ins = [];
+        foreach ($cols as $col) {
+            $ins[':' . $col]=$this->data[$col];
+        }
+        $str = 'INSERT INTO ' . static::$table .
+            '( ' . implode(', ', $cols) . ')
+                VALUES
+                (' . implode(', ', array_keys($ins)) . ')';
+
+        $bd = new Base();
+        return $bd->sql_execute($str, $ins);
+    }
 }
