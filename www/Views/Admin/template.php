@@ -44,7 +44,7 @@ if (empty($_SESSION['access']) || 'admin' != $_SESSION['access']) {
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li class="active"><a href="#">Новости</a></li>
+                <li class="active"><a href="/index.php?cont=Admin&act=All">Новости</a></li>
                 <li><a href="#">Галерея</a></li>
                 <li><a href="#">Пользователи</a></li>
                 <li><a href="#">Коментарии</a></li>
