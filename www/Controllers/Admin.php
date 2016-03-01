@@ -20,7 +20,7 @@ class Admin {
             foreach ($_POST as $key => $value) {
                 $new->$key = $value;
             }
-            $user = User::getUserByUserName($_SESSION['username']);
+            $user = User::getUserByUsername($_SESSION['username']);
             $new->user_id = $user->id;
             $new->date=date("Y.m.d H:i:s");
             $new->save();
