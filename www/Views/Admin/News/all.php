@@ -18,7 +18,7 @@
         <tbody>
         <?php foreach ($news as $new):?>
             <tr>
-                <td><?= $new->title; ?></td>
+                <td><a href="index.php?cont=Admin&act=One&id=<?=$new->id;?>"><?= $new->title; ?></a></td>
                 <td><?=$new->username;?></td>
                 <td><?=$new->date;?></td>
                 <td><a href="index.php?cont=Admin&act=FormNews&id=<?=$new->id;?>">Редактировать</a></td>
