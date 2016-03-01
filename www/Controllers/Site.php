@@ -7,7 +7,7 @@ use App\Models\User;
 class Site {
 
     public function actionLogin() {
-        $user=User::getUserByUserName($_POST['username']);
+        $user=User::getUserByUsername($_POST['username']);
         if (!empty($user) && 1==count($user)) {
             if ($user->password == $_POST['password']) {
                 $_SESSION['username']=$user->username;
@@ -46,13 +46,13 @@ class Site {
     }
 
     static public function setSessionByCookie() {
-        $user = User::getUserByUserName($_COOKIE['username']);
+        $user = User::getUserByUsername($_COOKIE['username']);
         $_SESSION['username'] = $user->username;
         $_SESSION['access'] = $user->access;
     }
 
     static public function setSessionAccess() {
-        $user = User::getUserByUserName($_SESSION['username']);
+        $user = User::getUserByUsername($_SESSION['username']);
         $_SESSION['access']=$user->access;
     }
 }
