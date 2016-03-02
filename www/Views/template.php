@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="/JavaScripts/bootstrap.js"></script>
-    <link rel="stylesheet" href="/Views/blogStyle.css">
+    <link rel="stylesheet" href="/Views/Style/blogStyle.css">
     <script src="/JavaScripts/Authorization.js"></script>
 </head>
 <body>
@@ -24,9 +24,12 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="index.php">Новости</a></li>
-                <li><a href="#">Галерея</a></li>
-                <li><a href="#">Змейка</a></li>
+                <li <?php if(!isset($_GET['cont']) || 'News'==$_GET['cont']) echo 'class="active"'?>>
+                    <a href="index.php">Новости</a></li>
+                <li <?php if(isset($_GET['cont']) && 'Gallery'==$_GET['cont']) echo 'class="active"'?>>
+                    <a href="index.php?cont=Gallery">Галерея</a></li>
+                <li <?php if(isset($_GET['cont']) && 'Snake'==$_GET['cont']) echo 'class="active"'?>>
+                    <a href="#">Змейка</a></li>
             </ul>
             <div class="navbar-right" style="padding-top: 7px;">
                 <?php if (isset($_SESSION['username'])):?>
