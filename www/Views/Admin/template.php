@@ -12,7 +12,7 @@ if (empty($_SESSION['access']) || 'admin' != $_SESSION['access']) {
     <title>Title</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="/Views/Admin/adminStyle.css">
+    <link rel="stylesheet" href="/Views/Style/adminStyle.css">
     <!--    <script src="/JavaScripts/bootstrap.js"></script>-->
 </head>
 <body>
