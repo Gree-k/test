@@ -32,6 +32,9 @@ class View {
     public static function mainPage() {
         header('Location: /index.php');
     }
+    public static function galleryPage() {
+        header('Location: /index.php?cont=Gallery');
+    }
     public static function adminPanel() {
         header('Location: /index.php?cont=Admin');
     }
