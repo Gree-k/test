@@ -22,11 +22,16 @@ class Base
         return $sth->fetchAll(PDO::FETCH_CLASS, $this->className);
 
     }
+    public function sql_queryFetch($str, $param=[]){
+        $sth = $this->dbn->prepare($str);
+        $sth->execute($param);
+        return $sth->fetch();
+
+    }
 
     public function sql_execute($str, $param=[]){
         $sth = $this->dbn->prepare($str);
         return $sth->execute($param);
-
 
     }
 }
