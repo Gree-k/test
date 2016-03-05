@@ -100,4 +100,18 @@ abstract class AbstractModel {
 
         return $res;
     }
+
+    /** Имеются ли дубликаты в заданном столбце. true/false*/
+    static public function presenceDuplicates($column, $value) {
+        $bd = new Base();
+        $str= 'SELECT EXISTS (SELECT * FROM ' . static::$table . ' WHERE ' . $column . '=:value)';
+        return $bd->sql_queryFetch($str,[':value' => $value])[0];
+
+    }
+
+    static public function countDuplicate($col,$val) {
+        $bd = new Base();
+        $str='SELECT count(' . $col . ') FROM ' . static::$table . ' WHERE ' . $col . '=:value';
+        return $bd->sql_queryFetch($str, [':value' => $val])[0];
+    }
 }
