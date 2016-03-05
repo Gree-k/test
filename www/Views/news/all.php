@@ -16,7 +16,8 @@
         </p>
 <!--        <a href="index.php?act=One&id=--><?//=$new->id;?><!--#commentAnchor">Коментарии</a>-->
         <div class="btn-group btn-group-lg" style="margin-left: -15px" >
-            <a href="index.php?act=One&id=<?=$new->id;?>#commentAnchor" class="btn"><span class="glyphicon glyphicon-comment"></a>
+            <a href="index.php?act=One&id=<?=$new->id;?>#commentAnchor" class="btn">
+                <span style="font-size: 0.8em" class="glyphicon glyphicon-comment"></span> <?=$new->countComm;?></a>
             <?php if(mb_strlen($new->text)>500):?>
                 <a href="index.php?act=One&id=<?=$new->id; ?>" class="btn">Читать далее</a>
             <?php endif;?>
