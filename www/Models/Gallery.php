@@ -3,7 +3,7 @@ namespace App\Models;
 
 use App\Classes\Base;
 
-/** Реализовать обрезку изображения до квадрата и сжатие + счетчик лайков*/
+/** Реализовать  счетчик лайков*/
 
 class Gallery extends AbstractModel{
     protected static $table = 'st_gallery';
@@ -14,15 +14,6 @@ class Gallery extends AbstractModel{
         $bd->setClassName(get_called_class());
         return $bd->sql_query($str);
     }
-
-    static public function haveName($newName) {
-        $bd = new Base();
-        $str= 'SELECT EXISTS (SELECT * FROM ' . static::$table . ' WHERE name=:name)';
-        $bd->setClassName(get_called_class());
-        return $bd->sql_queryFetch($str,[':name' => $newName])[0];
-
-    }
-
 
 
 }
