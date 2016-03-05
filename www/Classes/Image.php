@@ -18,30 +18,34 @@ class Image {
         }
         return $name;
     }
-    static public function toMini($dir, $name)
+
+
+
+     // при пропорциях = 0, обрезка происходить не будет
+     // newX и newY задают новые размеры изображения
+    static public function toMini($dir, $name, $newX = 200, $newY = 150, $proportions = 4/3)
     {
-        define("PROPORTIONS", 4/3); //по каким пропорция будет обрезка
-        define("NEW_X", 200);   // до какого размера будет уменьшение изображение
-        define("NEW_Y", 150);   //
 
         $a = new Imagick($dir);
         $geo = $a->getImageGeometry();
         $sizeX = $geo['width'];
         $sizeY = $geo['height'];
 
-        if ($sizeX/PROPORTIONS > $sizeY) {
-            $newSizeX = $sizeY * PROPORTIONS;
-            $newSizeY = $sizeY;
-            $x = ($sizeX - $newSizeX) / 2;
-            $y = 0;
-        }else {
-            $newSizeX = $sizeX;
-            $newSizeY = $sizeX / PROPORTIONS;
-            $x = 0;
-            $y = ($sizeY - $newSizeY) / 2;
+        if ($proportions != 0) {
+            if ($sizeX/$proportions > $sizeY) {
+                $newSizeX = $sizeY * $proportions;
+                $newSizeY = $sizeY;
+                $x = ($sizeX - $newSizeX) / 2;
+                $y = 0;
+            }else {
+                $newSizeX = $sizeX;
+                $newSizeY = $sizeX / $proportions;
+                $x = 0;
+                $y = ($sizeY - $newSizeY) / 2;
+            }
+            $a->cropImage($newSizeX, $newSizeY, $x, $y);
         }
-        $a->cropImage($newSizeX, $newSizeY, $x, $y);
-        $a->adaptiveResizeImage(NEW_X, NEW_Y);
+        $a->adaptiveResizeImage($newX, $newY);
         $a->writeImage(__DIR__ . '/../Views/Gallery/Image/Min/' . $name);
 
 
