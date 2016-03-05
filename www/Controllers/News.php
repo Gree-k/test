@@ -10,6 +10,13 @@ use App\Models\User;
 class News {
     public function actionAll() {
         $items = NewsModel::getAllNewsAndAuthorReverseSort('date');
+
+        foreach ($items as &$obj) {
+            foreach ($obj as &$one) {
+                $one['countComm']=Comment::countDuplicate('articles_id', $one['id']);
+            }
+        }
+
         $view = new View();
         $view->news = $items;
         $view->display('News/all.php');
@@ -20,6 +27,7 @@ class News {
         $id = $_GET['id'];
         $item = NewsModel::getOneById($id);
         $com = Comment::getCommentsByNewsPk($item->id);
+        $item->data['countComm']=count($com);
         $view = new View();
         $view->news = $item;
         $view->comments = $com;
