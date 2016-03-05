@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="/JavaScripts/bootstrap.js"></script>
     <link rel="stylesheet" href="/Views/Style/blogStyle.css">
+
+    <script src="https://yastatic.net/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://yastatic.net/jquery-ui/1.11.2/jquery-ui.min.js"></script>
+    <script src="/JavaScripts/bootstrap.js"></script>
     <script src="/JavaScripts/Authorization.js"></script>
 </head>
 <body>
@@ -28,8 +29,8 @@
                     <a href="index.php">Новости</a></li>
                 <li <?php if(isset($_GET['cont']) && 'Gallery'==$_GET['cont']) echo 'class="active"'?>>
                     <a href="index.php?cont=Gallery">Галерея</a></li>
-                <li <?php if(isset($_GET['cont']) && 'Snake'==$_GET['cont']) echo 'class="active"'?>>
-                    <a href="#">Змейка</a></li>
+                <li <?php if(isset($_GET['cont']) && 'Game'==$_GET['cont']) echo 'class="active"'?>>
+                    <a href="index.php?cont=Game">Змейка</a></li>
             </ul>
             <div class="navbar-right" style="padding-top: 7px;">
                 <?php if (isset($_SESSION['username'])):?>
