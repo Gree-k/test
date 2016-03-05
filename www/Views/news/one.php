@@ -4,7 +4,7 @@
     <p><?= str_replace('<br />', '</p><p>', nl2br($news->text)); ?></p>
 </div>
 <div class="sub-header">
-    <h4 id="commentAnchor"><span class="glyphicon glyphicon-comment"></span> Комментарии</h4>
+    <h4 id="commentAnchor">Комментарии <?=$news->countComm;?></h4>
 </div>
 <?php if(isset($_SESSION['username'])):?>
     <div id="formComment">
