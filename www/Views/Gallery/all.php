@@ -3,7 +3,7 @@
     <?php foreach($image as $img):?>
         <div <?php echo isset($_SESSION['username']) ? 'class="col-xs-4 col-md-4""' : 'class="col-xs-4 col-md-3""';?>>
             <a href="<?=$img->url;?>" class="thumbnail" target="_blank">
-                <img  alt="<?=$img->name;?>" src="<?=$img->url;?>">
+                <img  alt="<?=$img->name;?>" title="<?=$img->name;?>" src="<?=$img->url_mini;?>">
             </a>
         </div>
     <? endforeach;?>
