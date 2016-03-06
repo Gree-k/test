@@ -23,18 +23,18 @@
 
     <div class="comment">
         <table>
-            <tr>
+            <tr">
                 <td rowspan="2"  style="vertical-align: top">
 <!--                    сделать в бд модель с аватаром и выводить сюда-->
-                    <img src="/Views/Style/non-profile.jpg" class="pull-left img-thumbnail">
+                    <img src="/Views/Style/img/non-profile.jpg" class="pull-left img-thumbnail">
                 </td>
-                <td class="sub-header">
-                    <h4 class="pull-left" style="color: lightcoral;"><?=$com->name . ' ' . $com->surname;?> </h4>
-                    <p class="pull-right"><?=$com->date;?></p>
+                <td class="sub-header" style="height: 25px;">
+                    <h4 class="pull-left" style="color: lightcoral; margin: 0"><?=$com->name . ' ' . $com->surname;?> </h4>
+                    <p class="pull-right" style="margin: 0"><?=$com->date;?></p>
                 </td>
             </tr>
             <tr>
-                <td><p style="font-size: 16px"><?=str_replace('<br />', '</p><p>', nl2br($com->comment));?></p></td>
+                <td style="padding-top: 10px"><p style="font-size: 16px"><?=str_replace('<br />', '</p><p>', nl2br($com->comment));?></p></td>
             </tr>
         </table>
     </div>
