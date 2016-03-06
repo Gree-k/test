@@ -4,6 +4,7 @@ namespace App\Controllers;
 use App\Classes\Image;
 use App\Classes\View;
 use App\Models\Gallery as GalleryModel;
+use App\Models\User;
 
 class Gallery {
     public function actionAll() {
@@ -12,6 +13,13 @@ class Gallery {
         $view->image = $items;
         $view->display('Gallery/all.php');
 
+    }
+    public function actionOne() {
+        $id = $_GET['id'];
+        $item = GalleryModel::getImgById($id);
+        $view = new View();
+        $view->image = $item;
+        $view->display('Gallery/one.php');
     }
 
     public function actionSaveImg() {
@@ -23,10 +31,14 @@ class Gallery {
                 $upload = __DIR__ . '/../Views/Gallery/Image/Full/' . basename($name);
                 if (move_uploaded_file($_FILES['uploadImg']['tmp_name'], $upload)) {
                     Image::toMini($upload, $name);
+
                     $link = new GalleryModel();
+                    $user = User::getUserByUsername($_SESSION['username']);
+                    $link->user_id = $user->id;
+                    $link->size = Image::getSize($upload);
+                    $link->name = substr($name, 0, strpos($name, '.'));
                     $link->url = '/Views/Gallery/Image/Full/' . $name;
                     $link->url_mini = '/Views/Gallery/Image/Min/' . $name;
-                    $link->name = substr($name, 0, strpos($name, '.'));
                     $link->save();
 //                    ('Файл успешно загружен', 'index.php');
                 } else {
