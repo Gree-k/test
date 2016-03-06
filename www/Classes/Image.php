@@ -50,4 +50,10 @@ class Image {
 
 
     }
+
+    static public function getSize($dir) {
+        $a = new Imagick($dir);
+        $geo = $a->getImageGeometry();
+        return $geo['width'] . 'x' . $geo['height'];
+    }
 }
