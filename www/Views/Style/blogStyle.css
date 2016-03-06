@@ -2,6 +2,23 @@
  * Globals
  */
 
+#wrapper li {
+     display: inline-block;
+     /*text-decoration: none;*/
+     margin-right: 5px;
+
+}
+/*.hid{*/
+    /*overflow: hidden;*/
+    /*display: none;*/
+/*}*/
+#carouselLeft, #carouselRight{
+    cursor: pointer;
+}
+
+
+
+
 .thumbnail img{
     /*width: 267px;*/
     /*height: 150px;*/
