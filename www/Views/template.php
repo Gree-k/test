@@ -29,8 +29,8 @@
                     <a href="index.php">Новости</a></li>
                 <li <?php if(isset($_GET['cont']) && 'Gallery'==$_GET['cont']) echo 'class="active"'?>>
                     <a href="index.php?cont=Gallery">Галерея</a></li>
-                <li <?php if(isset($_GET['cont']) && 'Game'==$_GET['cont']) echo 'class="active"'?>>
-                    <a href="index.php?cont=Game">Змейка</a></li>
+                <li <?php if(isset($_GET['cont']) && '#'==$_GET['cont']) echo 'class="active"'?>>
+                    <a href="#">Что-то еще</a></li>
             </ul>
             <div class="navbar-right" style="padding-top: 7px;">
                 <?php if (isset($_SESSION['username'])):?>
