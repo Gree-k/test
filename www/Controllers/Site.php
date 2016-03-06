@@ -2,6 +2,7 @@
 namespace App\Controllers;
 
 use App\Classes\View;
+use App\Models\Gallery;
 use App\Models\User;
 
 class Site {
@@ -55,4 +56,13 @@ class Site {
         $user = User::getUserByUsername($_SESSION['username']);
         $_SESSION['access']=$user->access;
     }
+
+    public function actionMoreImg() {
+
+        $images = Gallery::getLastImg($_GET['size'], $_GET['need']);
+        header('Content-Type: application/json');
+        echo json_encode($images);
+
+    }
 }
+
