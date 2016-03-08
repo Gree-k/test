@@ -67,7 +67,11 @@ class Site {
     }
 
     public function actionTestName() {
-        $a=Gallery::presenceDuplicates('name', $_POST['name']);
+        if(preg_match('~^[а-яa-zА-ЯA-Z0-9 _-]+$~',$_POST['name'])){
+            $a=Gallery::presenceDuplicates('name', $_POST['name']);
+        }else{
+            $a = true;
+        }
         echo (int) $a;
 
     }
