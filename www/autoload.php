@@ -6,6 +6,9 @@ function __autoload($class) {
     $path = implode(DIRECTORY_SEPARATOR, $classParts) . '.php';
     if (file_exists($path)) {
         require $path;
+    }else{
+        \App\Classes\View::errorPage();
+        exit;
     }
 
 }
