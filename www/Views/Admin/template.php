@@ -11,9 +11,11 @@ if (empty($_SESSION['access']) || 'admin' != $_SESSION['access']) {
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>-->
+    <script src="https://yastatic.net/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://yastatic.net/jquery-ui/1.11.2/jquery-ui.min.js"></script>
+    <script src="/JavaScripts/bootstrap.js"></script>
     <link rel="stylesheet" href="/Views/Style/adminStyle.css">
-    <!--    <script src="/JavaScripts/bootstrap.js"></script>-->
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -45,7 +47,7 @@ if (empty($_SESSION['access']) || 'admin' != $_SESSION['access']) {
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <li class="active"><a href="/index.php?cont=Admin&act=All">Новости</a></li>
-                <li><a href="#">Галерея</a></li>
+                <li><a href="/index.php?cont=Admin&act=AllImg">Галерея</a></li>
                 <li><a href="#">Пользователи</a></li>
                 <li><a href="#">Коментарии</a></li>
             </ul>
