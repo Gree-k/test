@@ -1,4 +1,4 @@
-<p><a href="/index.php">&larr;Назад</a></p>
+<p ><a href="/index.php" class="btn btn-default" >&larr; Назад</a></p>
 <div class="blog-post">
     <h1><?= $news->title; ?></h1>
     <p><?= str_replace('<br />', '</p><p>', nl2br($news->text)); ?></p>
