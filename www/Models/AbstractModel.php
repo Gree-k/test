@@ -30,10 +30,9 @@ abstract class AbstractModel {
     }
     /** Получить все записи отсоритированные в обратном порядке */
     static public function getAllReverseSort($sortItem){
-        $class = get_called_class();
         $bd = new Base();
         $str='SELECT * FROM ' . static::$table . ' ORDER BY ' . $sortItem . ' DESC';
-        $bd->setClassName($class);
+        $bd->setClassName(get_called_class());
         $res = $bd->sql_query($str);
         return $res;
     }
@@ -113,5 +112,27 @@ abstract class AbstractModel {
         $bd = new Base();
         $str='SELECT count(' . $col . ') FROM ' . static::$table . ' WHERE ' . $col . '=:value';
         return $bd->sql_queryFetch($str, [':value' => $val])[0];
+    }
+
+    static public function countRow() {
+        $bd = new Base();
+        $str = 'SELECT count(*) FROM ' . static::$table;
+        return $bd->sql_queryFetch($str)[0];
+    }
+
+    // под ?
+    static public function getLast($start, $limit, $secondTable='', $column='', $elemCompare='') {
+        $bd = new Base();
+        $bd->setClassName(get_called_class());
+
+        if (empty($secondTable)) {
+            $str='SELECT * FROM ' . static::$table . ' ORDER BY id DESC LIMIT ' . $start . ', ' . $limit;
+        }else{
+            $str='SELECT '. static::$table .'.*, '. $secondTable .'.'. $column .' FROM '. static::$table .'
+          LEFT OUTER JOIN '. $secondTable .' ON '. static::$table .'.'. $elemCompare .'= '. $secondTable .'.id
+          ORDER BY id DESC LIMIT ' . $start . ', ' . $limit;
+        }
+        return $bd->sql_query($str);
+
     }
 }
