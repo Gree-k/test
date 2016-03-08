@@ -19,6 +19,16 @@ class Image {
         return $name;
     }
 
+    static public function renameImgFile($url, $newName) {
+        $oldImg=__DIR__ . '/..' . $url;
+        $urlPath=mb_substr($url, 0, strrpos($url, '/')+1);
+        $format=mb_substr($url, strrpos($url, '.'));
+        $dir = __DIR__ . '/..' . $urlPath;
+        rename($oldImg, $dir . $newName . $format);
+        return $urlPath . $newName . $format;
+
+    }
+
 
 
      // при пропорциях = 0, обрезка происходить не будет
