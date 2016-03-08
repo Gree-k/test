@@ -8,17 +8,19 @@ use App\Models\User;
 
 
 class News {
-    public function actionAll() {
-        $items = NewsModel::getAllNewsAndAuthorReverseSort('date');
 
+    public function actionAll() {
+        define("NEWS_ON_PAGE", 5);
+        $page = isset($_GET['page']) ? $_GET['page']-1 : '0';
+        $items=NewsModel::getLast($page * NEWS_ON_PAGE, NEWS_ON_PAGE, 'st_user', 'username', 'user_id');
         foreach ($items as &$obj) {
             foreach ($obj as &$one) {
                 $one['countComm']=Comment::countDuplicate('articles_id', $one['id']);
             }
         }
-
         $view = new View();
         $view->news = $items;
+        $view->count = NewsModel::countRow();
         $view->display('News/all.php');
 
     }
