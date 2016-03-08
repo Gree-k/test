@@ -68,7 +68,7 @@
 </div>
 
 <div class="container">
-    <div class="row" style="padding-left: 10px; padding-right: 10px">
+    <div class="row" style="padding-left: 10px; padding-right: 10px; ">
         <?php include __DIR__ . '/' . $file; ?>
     </div>
 </div>
