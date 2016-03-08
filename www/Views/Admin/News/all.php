@@ -18,7 +18,7 @@
         <tbody>
         <?php foreach ($news as $new):?>
             <tr>
-                <td><a href="index.php?cont=Admin&act=One&id=<?=$new->id;?>"><?= $new->title; ?></a></td>
+                <td style="width: 50%"><a href="index.php?cont=Admin&act=One&id=<?=$new->id;?>"><?= $new->title; ?></a></td>
                 <td><?=$new->username;?></td>
                 <td><?=$new->date;?></td>
                 <td><a href="index.php?cont=Admin&act=FormNews&id=<?=$new->id;?>">Редактировать</a></td>
@@ -27,4 +27,28 @@
         <?php endforeach;?>
         </tbody>
     </table>
+    <?php if($count>NEWS_ON_PANEL):?>
+        <div style="text-align: center">
+            <ul class="pagination ">
+                <?php if(!isset($_GET['page']) || $_GET['page']==1):?>
+                    <li><span>&laquo;</span></li>
+                <?php else:?>
+                    <li ><a  href="/index.php?cont=Admin&act=All&page=<?=$_GET['page']-1;?>">&laquo;</a></li>
+                <?php endif;?>
+
+                <?for($i=1;$i<=ceil($count/NEWS_ON_PANEL);$i++):?>
+                    <li <?php if((!isset($_GET['page']) && $i==1) || (isset($_GET['page']) && $i == $_GET['page'])):?>
+                        class="active"
+                    <?php endif;?>
+                    ><a href="/index.php?cont=Admin&act=All&page=<?=$i;?>"><?=$i;?></a></li>
+                <?endfor;?>
+
+                <?php if(isset($_GET['page']) && ceil($count/NEWS_ON_PANEL) == $_GET['page']):?>
+                    <li><span>&raquo;</span></li>
+                <?php else:?>
+                    <li ><a  href="/index.php?cont=Admin&act=All&page=<?=$_GET['page']+1;?>">&raquo;</a></li>
+                <?php endif;?>
+            </ul>
+        </div>
+    <? endif;?>
 </div>
