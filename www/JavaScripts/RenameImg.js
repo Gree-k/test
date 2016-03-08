@@ -21,8 +21,7 @@ $(document).ready(function(){
                 {
                     name: input.val().trim()
                 }
-            )
-                .done(function(data) {
+            ).done(function(data) {
                     if (data != 0) {
                         modalRename.addClass('has-error');
                     } else {
