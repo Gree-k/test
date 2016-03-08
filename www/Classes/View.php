@@ -29,13 +29,18 @@ class View {
         }
         include __DIR__ . '/../Views/Admin/template.php';
     }
+
+    public static function errorPage() {
+        $file = 'error404.php';
+        include __DIR__ . '/../Views/template.php';
+    }
     public static function mainPage() {
         header('Location: /index.php');
     }
     public static function galleryPage() {
         header('Location: /index.php?cont=Gallery');
     }
-    public static function adminPanel() {
-        header('Location: /index.php?cont=Admin');
+    public static function adminPanel($act='All') {
+        header('Location: /index.php?cont=Admin&act=' . $act);
     }
 }
