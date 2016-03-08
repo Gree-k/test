@@ -57,11 +57,18 @@ class Site {
         $_SESSION['access']=$user->access;
     }
 
+    //для ajax
     public function actionMoreImg() {
 
-        $images = Gallery::getLastImg($_GET['size'], $_GET['need']);
+        $images = Gallery::getLast($_GET['size'], $_GET['need'], 'st_user', 'username', 'user_id');
         header('Content-Type: application/json');
         echo json_encode($images);
+
+    }
+
+    public function actionTestName() {
+        $a=Gallery::presenceDuplicates('name', $_POST['name']);
+        echo (int) $a;
 
     }
 }
