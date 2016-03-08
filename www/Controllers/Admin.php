@@ -79,7 +79,7 @@ class Admin {
         $image = Gallery::getOneById($_GET['id']);
         $image->url = Image::renameImgFile($image->url, $_POST['name']);
         $image->url_mini = Image::renameImgFile($image->url_mini, $_POST['name']);
-        $image->name = $_POST['name'];
+        $image->name = trim($_POST['name']);
         $image->save();
         View::adminPanel('AllImg');
     }
