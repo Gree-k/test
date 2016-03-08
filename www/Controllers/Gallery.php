@@ -8,9 +8,12 @@ use App\Models\User;
 
 class Gallery {
     public function actionAll() {
-        $items = GalleryModel::getAllImg();
+        define("IMG_ON_PAGE", 12);
+        $page = isset($_GET['page']) ? $_GET['page']-1 : '0';
+        $items = GalleryModel::getLast($page * IMG_ON_PAGE, IMG_ON_PAGE);
         $view = new View();
         $view->image = $items;
+        $view->count = GalleryModel::countRow();
         $view->display('Gallery/all.php');
 
     }
