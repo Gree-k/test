@@ -17,4 +17,8 @@ $act = isset($_GET['act']) ? $_GET['act'] : 'All';
 $contName = 'App\\Controllers\\' . $cont;
 $controller = new $contName;
 $method = 'action' . $act;
-$controller->$method();
+if(method_exists($controller, $method)){
+    $controller->$method();
+}else{
+    \App\Classes\View::errorPage();
+}
