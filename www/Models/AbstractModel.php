@@ -33,7 +33,7 @@ abstract class AbstractModel {
         $bd = new Base();
         $str='SELECT * FROM ' . static::$table . ' ORDER BY ' . $sortItem . ' DESC';
         $bd->setClassName(get_called_class());
-        $res = $bd->sql_query($str);
+        $res = $bd->findAll($str);
         return $res;
     }
 
@@ -43,7 +43,7 @@ abstract class AbstractModel {
         $bd = new Base();
         $bd->setClassName($class);
         $str = 'SELECT * FROM ' . static::$table . ' WHERE id=:id';
-        $res = $bd->sql_query($str, [':id' => $id]);
+        $res = $bd->findAll($str, [':id' => $id]);
 
         return $res[0];
     }
@@ -52,7 +52,7 @@ abstract class AbstractModel {
     public function delete() {
         $bd = new Base();
         $str ='DELETE FROM ' . static::$table . ' WHERE id=:id';
-        $bd->sql_execute($str,[':id'=>$this->id]);
+        $bd->execute($str,[':id'=>$this->id]);
     }
 
     /** Добавить запись */
@@ -68,7 +68,7 @@ abstract class AbstractModel {
                 (' . implode(', ', array_keys($ins)) . ')';
 
         $bd = new Base();
-        return $bd->sql_execute($str, $ins);
+        return $bd->execute($str, $ins);
     }
 
     /** Изменить запись */
@@ -85,7 +85,7 @@ abstract class AbstractModel {
         }
         $str = 'UPDATE ' . static::$table . ' SET ' . implode(', ', $ins) . ' WHERE id=:id';
         $bd = new Base();
-        $bd->sql_execute($str, $params);
+        $bd->execute($str, $params);
     }
 
     /** Поиск по заданной записи */
@@ -95,7 +95,7 @@ abstract class AbstractModel {
             ' WHERE ' . $column . '=:' . $column;
         $bd = new Base();
         $bd->setClassName($class);
-        $res= $bd->sql_query($str , [':' . $column => $value]);
+        $res= $bd->findAll($str , [':' . $column => $value]);
 
         return $res;
     }
@@ -104,20 +104,20 @@ abstract class AbstractModel {
     static public function presenceDuplicates($column, $value) {
         $bd = new Base();
         $str= 'SELECT EXISTS (SELECT * FROM ' . static::$table . ' WHERE ' . $column . '=:value)';
-        return $bd->sql_queryFetch($str,[':value' => $value])[0];
+        return $bd->findOne($str,[':value' => $value])[0];
 
     }
 
     static public function countDuplicate($col,$val) {
         $bd = new Base();
         $str='SELECT count(' . $col . ') FROM ' . static::$table . ' WHERE ' . $col . '=:value';
-        return $bd->sql_queryFetch($str, [':value' => $val])[0];
+        return $bd->findOne($str, [':value' => $val])[0];
     }
 
     static public function countRow() {
         $bd = new Base();
         $str = 'SELECT count(*) FROM ' . static::$table;
-        return $bd->sql_queryFetch($str)[0];
+        return $bd->findOne($str)[0];
     }
 
     // под ?
@@ -132,7 +132,7 @@ abstract class AbstractModel {
           LEFT OUTER JOIN '. $secondTable .' ON '. static::$table .'.'. $elemCompare .'= '. $secondTable .'.id
           ORDER BY id DESC LIMIT ' . $start . ', ' . $limit;
         }
-        return $bd->sql_query($str);
+        return $bd->findAll($str);
 
     }
 }
