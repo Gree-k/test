@@ -70,8 +70,10 @@ class Admin {
 
     public function actionDelImg() {
         $id = $_GET['id'];
-        $n = Gallery::getOneById($id);
-        $n->delete();
+        $img = Gallery::getOneById($id);
+        Image::delImgFile($img->url);
+        Image::delImgFile($img->url_mini);
+        $img->delete();
         View::adminPanel('AllImg');
     }
 
