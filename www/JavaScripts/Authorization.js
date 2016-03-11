@@ -1,48 +1,64 @@
 $(function () {
     $('#login').click(function () {
-        authorization();
+        $('#reg').hide();
+        $('#auth').show();
         $('#loginModal').modal('show');
     });
     $('body').on('click','#authorization' ,function(e){
         e.preventDefault();
-        authorization();
+        $('#reg').hide();
+        $('#auth').show();
     });
-});
 
-$(function(){
     $('body').on('click','#registration' ,function(e){
         e.preventDefault();
-        $('.modal-title').text('Регистрация');
-        $('#modalFormLogin').empty().append('' +
-            '<form action="/index.php?cont=Site&act=Registration" method="post">' +
-            '<table id="tableForm">' +
-            '<tr><th>Имя</th>' +
-            '<td><input type="text"  class="form-control" name="name" autofocus required></td></tr>' +
-            '<tr><th>Фамилия</th>' +
-            '<td><input type="text"  class="form-control" name="surname" required></td></tr>' +
-            '<tr><th>Логин</th>' +
-            '<td><input type="text"  class="form-control" name="username" required></td></tr>' +
-            '<tr><th>Пароль</th>' +
-            '<td><input type="password"  class="form-control" name="password" required></td></tr>' +
-            '<tr><th rowspan="2"></th>' +
-            '<td><a id="authorization" href="#" class="pull-right">Авторизция</a></tr>' +
-            '<tr><td><input type="submit" class="btn btn-primary pull-right"  value="Регистрация" ></td></tr>' +
-            '</table></form>');
+        $('#auth').hide();
+        $('#reg').show();
     })
+
 });
 
-function authorization() {
-    $('.modal-title').text('Авторизация');
-    $('#modalFormLogin').empty().append('' +
-        '<form action="/index.php?cont=Site&act=Login" method="post">' +
-        '<table id="tableForm">' +
-        '<tr><th>Логин</th>' +
-        '<td><input type="text"  class="form-control" name="username" autofocus required></td></tr>' +
-        '<tr><th>Пароль</th>' +
-        '<td><input type="password"  class="form-control" name="password" required></td></tr>' +
-        '<tr><th rowspan="2"></th>' +
-        '<td><input type="checkbox" name="remember"> Запомнить меня' +
-        '<a id="registration" href="#" class="pull-right">Регистрация</a></tr>' +
-        '<tr><td><input type="submit" class="btn btn-primary pull-right" value="Войти" ></td></tr>' +
-        '</table></form>');
-}
+
+$(function () {
+    $('body').on('keyup', '#modalFormLogin input', function () {
+        var div = $(this).parent();
+
+        if($(this).attr('id')=='passwordIn' || $(this).attr('id')=='usernameIn') {
+            return ;
+        }
+
+        if (valid($(this).attr('id'), $(this).val().trim())) {
+            if (div.hasClass('has-error')) {
+                div.removeClass('has-error');
+            }
+            div.addClass('has-success');
+            $(this).popover('hide');
+        } else {
+            div.addClass('has-error');
+            $(this).popover('show');
+        }
+
+    });
+
+    function valid(type, str) {
+        var regExp = '';
+        if (type == 'username') {
+            regExp = /^[a-zA-Z][a-zA-Z0-9_\.-]*$/;
+        } else if (type == 'password') {
+            regExp = /^[\S]{5,}$/;
+        } else if (type == 'name' || type == 'surname') {
+            regExp = /^[a-zA-Zа-яА-Я-]+$/;
+        } else {
+            return false;
+        }
+
+        if (str.match(regExp)) {
+            //location.reload();
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+});
