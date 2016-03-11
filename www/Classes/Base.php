@@ -16,20 +16,20 @@ class Base
         $this->className = $name;
     }
 
-    public function sql_query($str, $param=[]){
+    public function findAll($str, $param=[]){
         $sth = $this->dbn->prepare($str);
         $sth->execute($param);
         return $sth->fetchAll(PDO::FETCH_CLASS, $this->className);
 
     }
-    public function sql_queryFetch($str, $param=[]){
+    public function findOne($str, $param=[]){
         $sth = $this->dbn->prepare($str);
         $sth->execute($param);
-        return $sth->fetch();
+        return $sth->fetchAll()[0];
 
     }
 
-    public function sql_execute($str, $param=[]){
+    public function execute($str, $param=[]){
         $sth = $this->dbn->prepare($str);
         return $sth->execute($param);
 
