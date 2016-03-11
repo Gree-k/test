@@ -21,7 +21,7 @@ class User extends AbstractModel {
         $str ='SELECT st_user.id, st_lvlaccess.access, username, name, surname, password, date
             FROM ' . self::$table . ' LEFT OUTER JOIN st_lvlaccess ON st_user.lvlaccess_id=st_lvlaccess.id';
         $bd->setClassName(get_called_class());
-        $res = $bd->sql_query($str);
+        $res = $bd->findAll($str);
         return $res;
     }
 
@@ -31,7 +31,11 @@ class User extends AbstractModel {
         $str = 'SELECT st_user.id, st_lvlaccess.access, username, name, surname, password, date
             FROM ' . self::$table . ' LEFT OUTER JOIN st_lvlaccess ON st_user.lvlaccess_id=st_lvlaccess.id
             WHERE username=:username';
-        $res = $bd->sql_query($str, [':username' => $username]);
-        return $res[0];
+        $res = $bd->findAll($str, [':username' => $username]);
+        if(!empty($res)){
+            return $res[0];
+        }else {
+            return false;
+        }
     }
 }
