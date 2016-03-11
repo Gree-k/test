@@ -19,6 +19,11 @@ class Image {
         return $name;
     }
 
+    static public function delImgFile($url) {
+        $dir=__DIR__ . '/..' . $url;
+        unlink($dir);
+    }
+
     static public function renameImgFile($url, $newName) {
         $oldImg=__DIR__ . '/..' . $url;
         $urlPath=mb_substr($url, 0, strrpos($url, '/')+1);
