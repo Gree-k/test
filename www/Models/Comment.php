@@ -13,7 +13,7 @@ class Comment extends AbstractModel {
             FROM ' . self::$table . ' LEFT OUTER JOIN st_user ON st_comment.user_id=st_user.id
             WHERE st_comment.articles_id=:id ORDER BY st_comment.date DESC';
         $bd->setClassName(get_called_class());
-        $res = $bd->sql_query($str, [':id' => $newsId]);
+        $res = $bd->findAll($str, [':id' => $newsId]);
         return $res;
     }
 
@@ -29,6 +29,6 @@ class Comment extends AbstractModel {
                 (' . implode(', ', array_keys($ins)) . ')';
 
         $bd = new Base();
-        return $bd->sql_execute($str, $ins);
+        return $bd->execute($str, $ins);
     }
 }
