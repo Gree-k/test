@@ -18,7 +18,7 @@ class News extends AbstractModel{
         $str='SELECT ' . static::$table. '.*, st_user.username  FROM ' . static::$table . '
             LEFT OUTER JOIN st_user ON st_articles.user_id=st_user.id ORDER BY ' . $sortItem . ' DESC';
         $bd->setClassName($class);
-        $res = $bd->sql_query($str);
+        $res = $bd->findAll($str);
         return $res;
     }
 
