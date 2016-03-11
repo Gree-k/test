@@ -4,8 +4,6 @@ $(document).ready(function(){
 
     $('body').on('click','.rename' ,function(e){
         e.preventDefault();
-        //var modalRename = $('#modalRename');
-        //$('.modal-title').text($(this).data('name'));
         $('#modalFormRename').attr('action', $(this).attr('href'));
         input.val($(this).data('name'));
         modalRename.removeClass('has-error');
