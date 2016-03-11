@@ -9,7 +9,6 @@
     <script src="https://yastatic.net/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://yastatic.net/jquery-ui/1.11.2/jquery-ui.min.js"></script>
     <script src="/JavaScripts/bootstrap.js"></script>
-    <script src="/JavaScripts/Authorization.js"></script>
 </head>
 <body>
 
@@ -81,21 +80,7 @@
     </div>
 </div>
 
-
-<div id="loginModal" class="modal fade ">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">Авторизация</h4>
-            </div>
-            <div class="modal-body" id="modalFormLogin">
-                <!--форма авторизации-->
-            </div>
-        </div>
-    </div>
-</div>
-
+<?php include __DIR__ . '/templateAuthorization.php' ?>
 
 </body>
 </html>
