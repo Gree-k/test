@@ -13,7 +13,7 @@ if (isset($_SESSION['username']) && !isset($_SESSION['access'])) {
 $cont = isset($_GET['cont']) ? $_GET['cont'] : 'News';
 $act = isset($_GET['act']) ? $_GET['act'] : 'All';
 
-
+//закинуть в try catch
 $contName = 'App\\Controllers\\' . $cont;
 $controller = new $contName;
 $method = 'action' . $act;
