@@ -8,19 +8,26 @@ use App\Models\User;
 class Site {
 
     public function actionLogin() {
-        $user=User::getUserByUsername($_POST['username']);
-        if (!empty($user) && 1==count($user)) {
-            if ($user->password == $_POST['password']) {
-                $_SESSION['username']=$user->username;
-                $_SESSION['access']=$user->access;
-                if (isset($_POST['remember'])) {
-                    setcookie('username', $user->username, time() + 60 * 60 * 24);
+        $regLogin = '~^[a-zA-Z][a-zA-Z0-9_\.-]*$~';
+        $regPass = '~^[\S]{5,}$~';
+        $login = trim($_POST['username']);
+        $pass = trim($_POST['password']);
+        if (preg_match($regLogin, $login) && preg_match($regPass, $pass)) {
+            $user=User::getUserByUsername($login);
+            if (!empty($user) && 1==count($user)) {
+                if ($user->password == $pass) {
+                    $_SESSION['username']=$user->username;
+                    $_SESSION['access']=$user->access;
+                    if (isset($_POST['remember'])) {
+                        setcookie('username', $user->username, time() + 60 * 60 * 24);
+                    }
+                    echo true;
+                    exit;
                 }
-                View::mainPage();
             }
         }
-        //созать показ сообщения о не верном логине иди пароле
-        View::mainPage();
+        echo false;
+
     }
 
     public function actionLogout() {
@@ -35,14 +42,34 @@ class Site {
     public function actionRegistration() {
         $user = new User();
         foreach ($_POST as $key => $value) {
-            $user->$key = trim($value);
+            $regExp = '';
+            if ($key == 'username') {
+                $regExp = '~^[a-zA-Z][a-zA-Z0-9_\.-]*$~';
+                if(User::presenceDuplicates($key, $value)){
+                    echo false;
+                    die;
+                }
+            } else if ($key == 'password') {
+                $regExp = '~^[\S]{5,}$~';
+            } else {
+                $regExp = '~^[a-zA-Zа-яА-Я-]+$~';
+            }
+
+            if (preg_match($regExp,$value)) {
+                $user->$key = trim($value);
+            } else {
+                echo false;
+                die;
+            }
+
         }
         $user->date=date("Y.m.d H:i:s");
         $fin = $user->save();
         if ($fin) {
             $_SESSION['username'] = $user->username;
         }
-        View::mainPage();
+        return true;
+//        View::mainPage();
 
     }
 
