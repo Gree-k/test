@@ -12,6 +12,7 @@ $(function () {
 
     $('body').on('click','#registration' ,function(e){
         e.preventDefault();
+
         $('#auth').hide();
         $('#reg').show();
     })
@@ -20,12 +21,8 @@ $(function () {
 
 
 $(function () {
-    $('body').on('keyup', '#modalFormLogin input', function () {
+    $('body').on('keyup', '#reg input', function () {
         var div = $(this).parent();
-
-        if($(this).attr('id')=='passwordIn' || $(this).attr('id')=='usernameIn') {
-            return ;
-        }
 
         if (valid($(this).attr('id'), $(this).val().trim())) {
             if (div.hasClass('has-error')) {
@@ -53,12 +50,45 @@ $(function () {
         }
 
         if (str.match(regExp)) {
-            //location.reload();
             return true;
         } else {
             return false;
         }
-
     }
-
 });
+$(function(){
+    $('#loginModal [type=submit]').click(function (e) {
+        e.preventDefault();
+        var form= $(this).parent().parent();
+        if(form.children('.has-error').size()!=0) {
+            return ;
+        }
+        $.post({
+            url: form.attr('action'),
+            data: form.serialize(),
+            success: function(data) {
+                if(data){
+                    location.reload();
+                }else{
+                    if('auth'==form.attr('id')){
+                        $('#alertAuth').show();
+                    }else {
+                        $('#alertReg').show();
+                    }
+                }
+            }
+        })
+
+    });
+
+    $('.alert .close').click(function(){
+        $('#alertAuth').hide();
+        $('#alertReg').hide();
+    })
+    $('#closeModal').click(function(){
+        $('.modal-body').each(function() {
+            $('input').popover('hide');
+            $('#loginModal').modal('hide');
+        });
+    })
+})
