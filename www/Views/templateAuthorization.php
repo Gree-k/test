@@ -5,11 +5,16 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <button id="closeModal" type="button" class="close" >×</button>
                 <h4 class="modal-title">Авторизация</h4>
             </div>
             <div class="modal-body" id="modalFormLogin">
+<!--                 РЕГИСТРАЦИЯ-->
                 <form id="reg" action="/index.php?cont=Site&act=Registration" method="post" >
+                    <div id="alertReg" class="alert alert-danger fade in" style="display: none;">
+                        <button type="button" class="close">×</button>
+                        <p>Логин занят</p>
+                    </div>
                     <div class="form-group">
                         <label class="control-label" for="name">Имя</label>
                         <input type="text"  class="form-control" name="name" id="name" placeholder="Имя"
@@ -39,10 +44,15 @@
                     </div>
                 </form>
 
+<!--                 АВТОРИЗАЦИЯ-->
                 <form id="auth" action="/index.php?cont=Site&act=Login" method="post">
+                    <div id="alertAuth" class="alert alert-danger fade in" style="display: none;">
+                        <button type="button" class="close">×</button>
+                        <p>Неверный логин или пароль</p>
+                    </div>
                     <div class="form-group">
                         <label class="control-label" for="usernameIn">Логин</label>
-                        <input type="text"  class="form-control" name="username" id="usernameIn" placeholder="Логин">
+                        <input type="text"  class="form-control" name="username" id="usernameIn" placeholder="Логин" >
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="passwordIn">Пароль</label>
@@ -52,8 +62,10 @@
                         <label><input type="checkbox" name="remember"> Запомнить меня</label>
                         <a id="registration" href="#" class="pull-right">Регистрация</a>
                     </div>
-                    <div style="text-align: right">
-                        <button type="submit" class="btn btn-default " >Войти</button></div>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-default ">Войти</button>
+                    </div>
+
                 </form>
             </div>
         </div>
